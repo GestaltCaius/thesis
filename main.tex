@@ -1,58 +1,91 @@
 \documentclass[a4paper, 12pt]{article}
-
-
 \usepackage[french]{babel} % Format des dates, des noms des tables, etc.
 \usepackage[T1]{fontenc} % Encodage recommandé avec le français
 
 % Les marges
-\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2cm, headheight=15pt]{geometry}
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2cm, headheight=15pt]{geometry}
 
 % Les espaces
 \usepackage{parskip}
 \setlength{\parindent}{2em} % Alinea
-\setlength{\parskip}{1.5em} % Interligne entre chaque paragraphes
+\setlength{\parskip}{1.75em} % Interligne entre chaque paragraphes
+\usepackage{setspace}
 
-\usepackage{lmodern} % font
+% \usepackage{lmodern} % font
+\usepackage{times} % font
+\usepackage{hyperref} % sommaire cliquable
+\usepackage{newclude} % include sub latex files
+
+% references
+\usepackage{csquotes} % needed when using biblatex with babel
+\usepackage[style = chem-acs]{biblatex}
+\bibliography{references}
 
 %%% TITRE %%%
+\usepackage{titling} % Permet d'ajouter un sous-titre et image EPITA
+\usepackage{graphicx} % images en general (et aussi dans le titre)
 
-%%% Consigne par rapport au titre %%%
+% BEGIN VARIABLES
+\usepackage{xspace}
+\newcommand{\entreprise}{\textsc{TNP} Consultants\xspace}
+\newcommand{\epita}{\textsc{EPITA}\xspace}
+\newcommand{\sncf}{\textsc{SNCF}\xspace}
+\newcommand{\tgv}{\textsc{TGV}\xspace}
+% END VARIABLES
+
+% GLOSSAIRE
+
+\usepackage[xindy, toc]{glossaries}
+\makeglossaries
+\loadglsentries{glossary}
+
+
+% GLOSSAIRE
+
+%%% CONSIGNE PAR RAPPORT AU TITRE %%%
 
 % Sur la couverture de votre rapport et de l’annexe, doivent figurer clairement votre nom, prénom,
 % promotion, le nom de l’entreprise, le sujet de la mission, les logos de l’EPITA Apprentissage et de
 % l’entreprise et la signature de votre Maître d’Apprentissage.
 
-%%% Consigne par rapport au titre %%%
+%%% CONSIGNE PAR RAPPORT AU TITRE %%%
 
-\usepackage{titling} % Permet d'ajouter un sous-titre et image EPITA
-\newcommand{\subtitle}[1]{%
+%%% BEGIN TITRE %%%
+\newcommand{\subtitle}[1]{
+    \posttitle{
+        \par\end{center}
+        \begin{center}
+            \large#1
+        \end{center}
+        \vskip
+        \section{0.5em}
+    }
+}
 
-  \posttitle{%
-    \par\end{center}
-  \begin{center}\large#1\end{center}
-
-  \vskip\section{0.5em}}}
-
-\usepackage{graphicx}
-
-\pretitle{%
-  \begin{center}
-    \LARGE
-    \includegraphics[width=0.49\linewidth]{img/logo_apprentissage.png}
-    \includegraphics[width=0.49\linewidth]{img/tnp_logo.jpg}\\[\bigskipamount]
-  }
-  \posttitle{\end{center}}
+\pretitle{
+    \begin{center}
+        \LARGE
+        \includegraphics[width=0.49\linewidth]{img/logo_apprentissage.png}
+        \includegraphics[width=0.49\linewidth]{img/tnp_logo.jpg}\\
+        [\bigskipamount]
+    }
+    \posttitle{
+        \end{center}
+    }
+  
 \title{
-Mémoire d'apprentissage\\
-TNP Consultants\\
-SUJET DE LA MISSION
+    Mémoire d'apprentissage\\
+    \entreprise\\
+    Bouclage de production
 }
+
 \author{
-Rodolphe \textsc{Guillaume} \\
-EPITA 2020
+    Rodolphe \textsc{Guillaume} \\
+    \epita 2020
 }
+
 \date{\today}
-%%% TITRE %%%
+%%% END TITRE %%%
 
 %%% HEADER and FOOTER %%%
 \usepackage{fancyhdr}
@@ -63,40 +96,63 @@ EPITA 2020
 \cfoot{\thepage}
 %%% HEADER and FOOTER %%%
 
+
 \begin{document}
+
+\onehalfspacing % Set line spacing to 1.5
+
+\renewcommand{\listfigurename}{Table des illustrations}
+\renewcommand{\figurename}{Illustration}
+\renewcommand{\tablename}{Tableau}
+\renewcommand{\contentsname}{Sommaire}
 
 \maketitle
 \thispagestyle{empty}
 \newpage{}
 
+\begin{abstract}
+Ce document s'intéresse aux recommandations et bonnes pratiques de génération de clé de chiffrement en tant que particuliers, étudiants ou développeurs en entreprise. Notamment à celles du \textit{National Institute of Standards and Technology} (\textsc{NIST})
+\end{abstract}
+
 \tableofcontents
-
 \thispagestyle{empty}
-
 \newpage{}
+
 \setcounter{page}{1}
+
 \section{2. REMERCIEMENTS}
 
-\newpage{}
+    \include*{includes/remerciements}
+    \newpage{}
+
 \section{3. RESUME DE LA MISSION (2 PAGES)}
 
-\newpage{}
+    \include*{includes/3-resume_mission}
+    \newpage{}
+
 \section{4. INTRODUCTION : 10 PAGES MAXIMUM}
 
-Ce chapitre doit permettre au jury de comprendre le contexte et la complexité de votre
-mission.
+% Ce chapitre doit permettre au jury de comprendre le contexte et la complexité de votre mission.
 
 \subsection{4.1. Rappel de la mission et des finalités de celle-ci (15 lignes minimum)}
+
+    \include*{includes/4-1-mission_finalites}
 
 Vous rappellerez l’intitulé de la mission, l’expliciterez et préciserez ses finalités.
 
 \subsection{4.2. Explication sur une éventuelle modification de la mission initiale}
+
+    \include*{includes/modifications_mission_initiale}
+    \newpage{}
 
 S’il y a lieu, vous expliquerez ce qui a fait évoluer le sujet. Si la variation est très importante
 vous aurez préalablement revalidé la mission avec la direction des études.
 18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 8 de 17
 
 \subsection{4.3. Présentation de l'entreprise (3 pages maximum)}
+
+    \include*{includes/presentation_entreprise}
+    \newpage{}
 
 Vous situerez d’abord l’entreprise dans son contexte concurrentiel et dans ses perspectives, enfin vous
 situerez votre mission dans le contexte de l’entreprise et de l’organisation. Soyez imaginatif et créatif
@@ -105,10 +161,16 @@ originale et pertinente. Positionnez-vous dans l’entreprise.
 
 \subsection{4.4. Maturité de l’entreprise sur les thématiques de la mission}
 
+    \include*{includes/maturite_entreprise_mission}
+    \newpage{}
+
 Vous indiquerez les connaissances et les relations de votre mission avec le métier de l’entreprise et ses
 équipes (y compris de votre Maître d’Apprentissage)
 
 \subsection{4.5. Etat des connaissances sur la mission chez l’apprenti}
+
+    \include*{includes/etat_connaissances_apprenti}
+    \newpage{}
 
 Vous appliquerez la même approche avec vous, vous détaillerez en quoi votre mission se rapporte à
 votre cursus EPITA par apprentissage et/ou vos expériences, et vous indiquerez vos principales
@@ -116,14 +178,19 @@ motivations vis à vis de cette mission.
 
 \subsection{4.6 Justification de l’intérêt et du positionnement de la mission pour l’entreprise.}
 
+    \include*{includes/interet_mission_entreprise}
+    \newpage{}
+
 \subsection{4.7. Contexte précis de travail}
+
+    \include*{includes/contexte_travail}
+    \newpage{}
 
 Vous développerez votre contexte de travail, en précisant les moyens fournis par l’entreprise,
 l’accessibilité des documentations, disponibilité des personnes compétentes, etc. Le but est de décrire
 ce que vous avez utilisé et comment cela a contribué efficacement à la réalisation de votre mission.
 Vous pouvez aussi mentionner les apports externes.
 
-\newpage{}
 \section{5. ASPECTS ORGANISATIONNELS : 25 PAGES MAXIMUM}
 
 Le but de ce chapitre est de permettre au jury de comprendre les conditions humaines et
@@ -142,24 +209,36 @@ d’activité. Ce découpage devra être exhaustif au regard de l’ensemble des
 durant la mission (fonction…).
 Mentionner également les processus/procédures qualité mis en œuvre pour la mission.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \subsection{5.2. Respect des délais et critique de ce découpage}
 
 Vous indiquerez comment vous avez ou non respecté le planning et le justifierez. Enfin vous
 analyserez la pertinence de ce découpage au regard des résultats obtenus et les améliorations
 qui auraient pu être envisagées.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \subsection{5.3. Nature et fréquence des points de contrôle en interne}
 
 Vous relaterez ici comment se sont enchaînées les étapes et les points de contrôle de votre
 mission ; les éventuelles revues internes avec ou sans le client, les éventuels audits, les points
 hebdomadaires, mensuels avec votre maître d’apprentissage, etc.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \subsection{5.4. Gestion des situations de crises de problèmes techniques ou budgétaire ou politiques et relationnels}
 
 En cas de dépassement net des délais, vous expliquerez comment vous avez géré ces aspects
 et comment vous avez atteint/réduit vos objectifs. Vous préciserez le rôle de votre maître
 d’apprentissage et d’autres collègues dans la résolution de problèmes.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \newpage{}
 \section{6. ASPECTS SCIENTIFIQUES \& TECHNIQUES ET METHODOLOGIQUES :}
 
@@ -181,6 +260,9 @@ E. Les difficultés éventuelles
 F. Le ou les résultats obtenus (s) ou le niveau d’avancement ainsi que l’impact sur le sujet et votre
 investissement
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \newpage{}
 \section{7. PREMIER BILAN : 10 PAGES MAXIMUM}
 
@@ -198,15 +280,24 @@ perspectives ouvertes par ce sujet et la valeur ajoutée qu’elle peut en retir
 le service et l’entreprise - dans le cas d’une SSII, vous mettrez en évidence ces mêmes
 perspectives tant pour la société de service que pour le client final.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \subsection{7.2. Intérêt personnel}
 
 Vous détaillerez l’intérêt personnel technique et/ou organisationnel acquis pendant la mission.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \subsection{7.3. Conclusion et retour d'expérience sur la mission : les points perfectibles a posteriori}
 
 Vous indiquerez ce que vous auriez aimé améliorer : planning, choix techniques..., vous
 détaillerez aussi la pertinence de votre formation au regard de votre mission.
 
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
 \newpage{}
 \section{8. BIBLIOGRAPHIE – GLOSSAIRE – INDEX – TABLE DES ILLUSTRATIONS}
 
@@ -219,7 +310,27 @@ doit d’expliquer en quoi elle a servi à résoudre une problématique de la mi
 chaque entreprise utilise des sigles, des terminologies « métiers », etc. Ces sigles et ces termes doivent
 être expliqués et le contexte de leur utilisation précisé.
 
+% References, glossaire
+
+% Explications pour l'utilisation du glossaire:
+% http://blog.dorian-depriester.fr/latex/utilisation-du-package-glossaries
+
 \newpage{}
+
+\printglossary[title={Glossaire}, toctitle={Glossaire}]
+\newpage{}
+
+%\thispagestyle{empty}
+\listoffigures
+\newpage{}
+
+%\thispagestyle{empty}
+% \bibliographystyle{ieeetr}
+% \bibliographystyle{ieeetr}
+%\bibliographystyle{unsrt}
+\printbibliography
+\newpage{}
+
 \section{9. ANNEXES (NOMBRE DE PAGES ILLIMITEES, ET A RENDRE DANS UN DOCUMENT PHYSIQUEMENT SEPARE DU RAPPORT)}
 
 Ce chapitre est obligatoire et doit être significatif, consistant et pertinent.
