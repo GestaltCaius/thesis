@@ -1,0 +1,99 @@
+\usepackage[french]{babel} % Format des dates, des noms des tables, etc.
+\usepackage[T1]{fontenc} % Encodage recommandé avec le français
+
+% Les marges
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2cm, headheight=15pt]{geometry}
+\usepackage{float} % placement des figures
+% Les espaces
+\usepackage{parskip}
+\setlength{\parindent}{2em} % Alinea
+\setlength{\parskip}{1.75em} % Interligne entre chaque paragraphes
+\usepackage{setspace}
+
+\usepackage[bottom]{footmisc} % make footnotes stick to bottom of pages
+
+\usepackage{lmodern} % font
+% \usepackage{times} % font
+\usepackage{hyperref} % sommaire cliquable
+\hypersetup{
+    pdftitle={Mémoire d'apprentissage - Rodolphe GUILLAUME - TNP Consultants - Bouclage de production},
+    pdfauthor={Rodolphe GUILLAUME},
+    colorlinks=true, %colorise les liens
+    breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+    urlcolor= blue, %couleur des hyperliens
+    % linkcolor= black, %couleur des liens internes
+    linkcolor= blue, %couleur des liens internes
+    citecolor=blue,    %couleur des liens de citations
+    filecolor=blue,      
+    % bookmarks=true,
+    % bookmarksopen=true,
+    % pdftoolbar=false,
+    % pdfmenubar=true,
+    % pdfpagemode=FullScreen,
+}
+\usepackage{newclude} % include sub latex files
+
+% references
+\usepackage{csquotes} % needed when using biblatex with babel
+\usepackage[style = chem-acs]{biblatex}
+\bibliography{references}
+
+%%% TITRE %%%
+\usepackage{titling} % Permet d'ajouter un sous-titre et image EPITA
+\usepackage{graphicx} % images en general (et aussi dans le titre)
+
+
+% GLOSSAIRE
+\usepackage[xindy, toc]{glossaries}
+\makeglossaries
+\loadglsentries{glossary}
+
+
+% GLOSSAIRE
+
+
+%%% BEGIN TITRE %%%
+\newcommand{\subtitle}[1]{
+    \posttitle{
+        \par\end{center}
+        \begin{center}
+            \large#1
+        \end{center}
+        \vskip
+        \section{0.5em}
+    }
+}
+
+\pretitle{
+    \begin{center}
+        \LARGE
+        \includegraphics[width=0.49\linewidth]{img/logo_apprentissage.png}
+        \includegraphics[width=0.49\linewidth]{img/tnp_logo.jpg}\\
+        [\bigskipamount]
+    }
+    \posttitle{
+        \end{center}
+    }
+  
+\title{
+    Mémoire d'apprentissage\\
+    \entreprise\\
+    Bouclage de production
+}
+
+\author{
+    Rodolphe \textsc{Guillaume} \\
+    \epita 2020
+}
+
+\date{\today}
+
+%%% END TITRE %%%
+
+%%% HEADER and FOOTER %%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Rodolphe \textsc{GUILLAUME}}
+\lhead{\tnp}
+\cfoot{\thepage}

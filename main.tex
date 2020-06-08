@@ -1,46 +1,4 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage[french]{babel} % Format des dates, des noms des tables, etc.
-\usepackage[T1]{fontenc} % Encodage recommandé avec le français
-
-% Les marges
-\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2cm, headheight=15pt]{geometry}
-
-% Les espaces
-\usepackage{parskip}
-\setlength{\parindent}{2em} % Alinea
-\setlength{\parskip}{1.75em} % Interligne entre chaque paragraphes
-\usepackage{setspace}
-
-% \usepackage{lmodern} % font
-\usepackage{times} % font
-\usepackage{hyperref} % sommaire cliquable
-\usepackage{newclude} % include sub latex files
-
-% references
-\usepackage{csquotes} % needed when using biblatex with babel
-\usepackage[style = chem-acs]{biblatex}
-\bibliography{references}
-
-%%% TITRE %%%
-\usepackage{titling} % Permet d'ajouter un sous-titre et image EPITA
-\usepackage{graphicx} % images en general (et aussi dans le titre)
-
-% BEGIN VARIABLES
-\usepackage{xspace}
-\newcommand{\entreprise}{\textsc{TNP} Consultants\xspace}
-\newcommand{\epita}{\textsc{EPITA}\xspace}
-\newcommand{\sncf}{\textsc{SNCF}\xspace}
-\newcommand{\tgv}{\textsc{TGV}\xspace}
-% END VARIABLES
-
-% GLOSSAIRE
-
-\usepackage[xindy, toc]{glossaries}
-\makeglossaries
-\loadglsentries{glossary}
-
-
-% GLOSSAIRE
 
 %%% CONSIGNE PAR RAPPORT AU TITRE %%%
 
@@ -50,52 +8,8 @@
 
 %%% CONSIGNE PAR RAPPORT AU TITRE %%%
 
-%%% BEGIN TITRE %%%
-\newcommand{\subtitle}[1]{
-    \posttitle{
-        \par\end{center}
-        \begin{center}
-            \large#1
-        \end{center}
-        \vskip
-        \section{0.5em}
-    }
-}
-
-\pretitle{
-    \begin{center}
-        \LARGE
-        \includegraphics[width=0.49\linewidth]{img/logo_apprentissage.png}
-        \includegraphics[width=0.49\linewidth]{img/tnp_logo.jpg}\\
-        [\bigskipamount]
-    }
-    \posttitle{
-        \end{center}
-    }
-  
-\title{
-    Mémoire d'apprentissage\\
-    \entreprise\\
-    Bouclage de production
-}
-
-\author{
-    Rodolphe \textsc{Guillaume} \\
-    \epita 2020
-}
-
-\date{\today}
-%%% END TITRE %%%
-
-%%% HEADER and FOOTER %%%
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{Rodolphe \textsc{GUILLAUME}}
-\lhead{\textsc{TNP}}
-\cfoot{\thepage}
-%%% HEADER and FOOTER %%%
-
+\input{variables}
+\input{configuration}
 
 \begin{document}
 
@@ -110,9 +24,9 @@
 \thispagestyle{empty}
 \newpage{}
 
-\begin{abstract}
-Ce document s'intéresse aux recommandations et bonnes pratiques de génération de clé de chiffrement en tant que particuliers, étudiants ou développeurs en entreprise. Notamment à celles du \textit{National Institute of Standards and Technology} (\textsc{NIST})
-\end{abstract}
+% \begin{abstract}
+% Ce document s'intéresse aux recommandations et bonnes pratiques de génération de clé de chiffrement en tant que particuliers, étudiants ou développeurs en entreprise. Notamment à celles du \textit{National Institute of Standards and Technology} (\textsc{NIST})
+% \end{abstract}
 
 \tableofcontents
 \thispagestyle{empty}
@@ -120,195 +34,220 @@ Ce document s'intéresse aux recommandations et bonnes pratiques de génération
 
 \setcounter{page}{1}
 
-\section{2. REMERCIEMENTS}
+\section{Remerciements}
 
     \include*{includes/remerciements}
     \newpage{}
 
-\section{3. RESUME DE LA MISSION (2 PAGES)}
+\section{Résumé de la mission (2 PAGES)}
 
     \include*{includes/3-resume_mission}
     \newpage{}
 
-\section{4. INTRODUCTION : 10 PAGES MAXIMUM}
+\section{Introduction (10 PAGES MAXIMUM)}
 
 % Ce chapitre doit permettre au jury de comprendre le contexte et la complexité de votre mission.
 
-\subsection{4.1. Rappel de la mission et des finalités de celle-ci (15 lignes minimum)}
+\subsection{Rappel de la mission et des finalités de celle-ci (15 lignes minimum)}
 
     \include*{includes/4-1-mission_finalites}
-
-Vous rappellerez l’intitulé de la mission, l’expliciterez et préciserez ses finalités.
-
-\subsection{4.2. Explication sur une éventuelle modification de la mission initiale}
-
-    \include*{includes/modifications_mission_initiale}
     \newpage{}
 
-S’il y a lieu, vous expliquerez ce qui a fait évoluer le sujet. Si la variation est très importante
-vous aurez préalablement revalidé la mission avec la direction des études.
-18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 8 de 17
+% Vous rappellerez l’intitulé de la mission, l’expliciterez et préciserez ses finalités.
 
-\subsection{4.3. Présentation de l'entreprise (3 pages maximum)}
+% \subsection{4.2. Explication sur une éventuelle modification de la mission initiale}
 
-    \include*{includes/presentation_entreprise}
+%     \include*{includes/modifications_mission_initiale}
+%     \newpage{}
+
+% S’il y a lieu, vous expliquerez ce qui a fait évoluer le sujet. Si la variation est très importante
+% vous aurez préalablement revalidé la mission avec la direction des études.
+% 18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 8 de 17
+
+\subsection{Présentation de l'entreprise (3 pages maximum)}
+
+    \include*{includes/4-3-presentation_entreprise}
     \newpage{}
 
-Vous situerez d’abord l’entreprise dans son contexte concurrentiel et dans ses perspectives, enfin vous
-situerez votre mission dans le contexte de l’entreprise et de l’organisation. Soyez imaginatif et créatif
-dans cette présentation, évitez les copier-coller des rapports d’activité, préférez votre synthèse imagée,
-originale et pertinente. Positionnez-vous dans l’entreprise.
+% Vous situerez d’abord l’entreprise dans son contexte concurrentiel et dans ses perspectives, enfin vous
+% situerez votre mission dans le contexte de l’entreprise et de l’organisation. Soyez imaginatif et créatif
+% dans cette présentation, évitez les copier-coller des rapports d’activité, préférez votre synthèse imagée,
+% originale et pertinente. Positionnez-vous dans l’entreprise.
 
-\subsection{4.4. Maturité de l’entreprise sur les thématiques de la mission}
+\subsection{Maturité de l’entreprise sur les thématiques de la mission}
 
-    \include*{includes/maturite_entreprise_mission}
+% Vous indiquerez les connaissances et les relations de votre mission avec le métier de l’entreprise et ses
+% équipes (y compris de votre Maître d’Apprentissage)
+
+    \include*{includes/4-4-maturite_entreprise_mission}
     \newpage{}
 
-Vous indiquerez les connaissances et les relations de votre mission avec le métier de l’entreprise et ses
-équipes (y compris de votre Maître d’Apprentissage)
 
-\subsection{4.5. Etat des connaissances sur la mission chez l’apprenti}
+\subsection{État des connaissances sur la mission chez l’apprenti}
 
-    \include*{includes/etat_connaissances_apprenti}
+% \begin{quote}
+% Vous appliquerez la même approche avec vous, vous détaillerez en quoi votre mission se rapporte à
+% votre cursus EPITA par apprentissage et/ou vos expériences, et vous indiquerez vos principales
+% motivations vis à vis de cette mission.
+% \end{quote}
+
+    \include*{includes/4-5-etat_connaissances_apprenti}
     \newpage{}
 
-Vous appliquerez la même approche avec vous, vous détaillerez en quoi votre mission se rapporte à
-votre cursus EPITA par apprentissage et/ou vos expériences, et vous indiquerez vos principales
-motivations vis à vis de cette mission.
 
-\subsection{4.6 Justification de l’intérêt et du positionnement de la mission pour l’entreprise.}
+\subsection{Justification de l’intérêt et du positionnement de la mission pour l’entreprise.}
 
-    \include*{includes/interet_mission_entreprise}
+    \include*{includes/4-6-interet_mission_entreprise}
     \newpage{}
 
 \subsection{4.7. Contexte précis de travail}
 
-    \include*{includes/contexte_travail}
+% \begin{quote}
+% Vous développerez votre contexte de travail, en précisant les moyens fournis par l’entreprise,
+% l’accessibilité des documentations, disponibilité des personnes compétentes, etc. Le but est de décrire
+% ce que vous avez utilisé et comment cela a contribué efficacement à la réalisation de votre mission.
+% Vous pouvez aussi mentionner les apports externes.
+% \end{quote}
+
+    \include*{includes/4-7-contexte_travail}
     \newpage{}
 
-Vous développerez votre contexte de travail, en précisant les moyens fournis par l’entreprise,
-l’accessibilité des documentations, disponibilité des personnes compétentes, etc. Le but est de décrire
-ce que vous avez utilisé et comment cela a contribué efficacement à la réalisation de votre mission.
-Vous pouvez aussi mentionner les apports externes.
 
-\section{5. ASPECTS ORGANISATIONNELS : 25 PAGES MAXIMUM}
+\section{Aspects organisationnels (25 PAGES MAXIMUM)}
 
-Le but de ce chapitre est de permettre au jury de comprendre les conditions humaines et
-organisationnelles dans lesquelles s’est déroulée votre mission, d’en mesurer la complexité et
-d’évaluer votre adaptabilité à la vie de l’entreprise.
-Pour les missions effectuées en ESN ou dans les projets, mettre en exergue ce qui relève de la mission
-et ce qui relève de l’organisation spécifique de l’ESN ou du projet.
+% \begin{quote}
+% Le but de ce chapitre est de permettre au jury de comprendre les conditions humaines et
+% organisationnelles dans lesquelles s’est déroulée votre mission, d’en mesurer la complexité et
+% d’évaluer votre adaptabilité à la vie de l’entreprise.
+% Pour les missions effectuées en ESN ou dans les projets, mettre en exergue ce qui relève de la mission
+% et ce qui relève de l’organisation spécifique de l’ESN ou du projet.
+% \end{quote}
 
-\subsection{5.1. Découpage de la mission}
+\subsection{Découpage de la mission}
 
-Vous mentionnerez les étapes et les livrables de votre mission selon les objectifs qui composent
-votre travail et si possible les conditions de passage d’une étape à la suivante. Vous essayerez
-de mentionner les étapes en série et/ou en parallèle à l’aide d’un diagramme de Gantt ou
-18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 9 de 17
-d’activité. Ce découpage devra être exhaustif au regard de l’ensemble des tâches accomplies
-durant la mission (fonction…).
-Mentionner également les processus/procédures qualité mis en œuvre pour la mission.
+% \begin{quote}
+% Vous mentionnerez les étapes et les livrables de votre mission selon les objectifs qui composent
+% votre travail et si possible les conditions de passage d’une étape à la suivante. Vous essayerez
+% de mentionner les étapes en série et/ou en parallèle à l’aide d’un diagramme de Gantt ou
+% d’activité. Ce découpage devra être exhaustif au regard de l’ensemble des tâches accomplies
+% durant la mission (fonction…).
+% Mentionner également les processus/procédures qualité mis en œuvre pour la mission.
+% \end{quote}
+
+    \include*{includes/5-1-decoupage_mission}
+    \newpage{}
+    
+\subsection{Respect des délais et critique de ce découpage}
+
+% \begin{quote}
+% Vous indiquerez comment vous avez ou non respecté le planning et le justifierez. Enfin vous
+% analyserez la pertinence de ce découpage au regard des résultats obtenus et les améliorations
+% qui auraient pu être envisagées.
+% \end{quote}
 
     \include*{includes/presentation_entreprise}
     \newpage{}
     
-\subsection{5.2. Respect des délais et critique de ce découpage}
+\subsection{Nature et fréquence des points de contrôle en interne}
 
-Vous indiquerez comment vous avez ou non respecté le planning et le justifierez. Enfin vous
-analyserez la pertinence de ce découpage au regard des résultats obtenus et les améliorations
-qui auraient pu être envisagées.
-
-    \include*{includes/presentation_entreprise}
-    \newpage{}
-    
-\subsection{5.3. Nature et fréquence des points de contrôle en interne}
-
-Vous relaterez ici comment se sont enchaînées les étapes et les points de contrôle de votre
-mission ; les éventuelles revues internes avec ou sans le client, les éventuels audits, les points
-hebdomadaires, mensuels avec votre maître d’apprentissage, etc.
+% \begin{quote}
+% Vous relaterez ici comment se sont enchaînées les étapes et les points de contrôle de votre
+% mission ; les éventuelles revues internes avec ou sans le client, les éventuels audits, les points
+% hebdomadaires, mensuels avec votre maître d’apprentissage, etc.
+% \end{quote}
 
     \include*{includes/presentation_entreprise}
     \newpage{}
     
-\subsection{5.4. Gestion des situations de crises de problèmes techniques ou budgétaire ou politiques et relationnels}
+\subsection{Gestion des situations de crises de problèmes techniques ou budgétaire ou politiques et relationnels}
 
-En cas de dépassement net des délais, vous expliquerez comment vous avez géré ces aspects
-et comment vous avez atteint/réduit vos objectifs. Vous préciserez le rôle de votre maître
-d’apprentissage et d’autres collègues dans la résolution de problèmes.
-
-    \include*{includes/presentation_entreprise}
-    \newpage{}
-    
-\newpage{}
-\section{6. ASPECTS SCIENTIFIQUES \& TECHNIQUES ET METHODOLOGIQUES :}
-
-Ce chapitre doit permettre au jury de comprendre la complexité scientifique et/ou technique de la
-solution que vous avez du mettre en œuvre et de comprendre l’analyse qui vous a permis de bâtir cette
-solution. Il est possible d’interpréter le mot technique comme étant une démarche d’ingénieur mise
-en œuvre par l’apprenti.
-On attendra un fort contenu scientifique et donc autour de 30 pages, 35 pages maximum.
-
-Pour chacune de vos réalisations techniques, méthodologiques ou managériales au cours de la mission
-vous devrez évoquer les points suivants :
-A. Présentation du ou des objectif(s)
-B. Des alternatives possibles (à justifier)
-C. Le cadre imposé par l’entreprise
-D. Vos propositions retenues ou non
-E. Les difficultés éventuelles
-18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 10 de 17
-
-F. Le ou les résultats obtenus (s) ou le niveau d’avancement ainsi que l’impact sur le sujet et votre
-investissement
+% \begin{quote}
+% En cas de dépassement net des délais, vous expliquerez comment vous avez géré ces aspects
+% et comment vous avez atteint/réduit vos objectifs. Vous préciserez le rôle de votre maître
+% d’apprentissage et d’autres collègues dans la résolution de problèmes.
+% \end{quote}
 
     \include*{includes/presentation_entreprise}
     \newpage{}
     
 \newpage{}
-\section{7. PREMIER BILAN : 10 PAGES MAXIMUM}
+\section{Aspects scientifiques \& techniques et méthodologiques (30-35 pages maximum)}
 
-Repositionnez la problématique de l’entreprise ou du sujet de la mission par rapport à un état de
-l’art du marché. Il s’agira par exemple dans le cas d’un produit, d’une méthode d’un standard, de le
-positionner par rapport à d’autres alternatives en démontrant votre maîtrise du domaine.
-Le but de ce chapitre est de permettre au jury d’identifier et de quantifier le reste à faire d’ici la fin de
-votre mission et les résultats à venir et de mesurer la valeur ajoutée que vous avez apportée à
-l’entreprise et de comprendre en quoi vous avez répondu au besoin de l’entreprise.
+% \begin{quote}
+% Ce chapitre doit permettre au jury de comprendre la complexité scientifique et/ou technique de la
+% solution que vous avez du mettre en œuvre et de comprendre l’analyse qui vous a permis de bâtir cette
+% solution. Il est possible d’interpréter le mot technique comme étant une démarche d’ingénieur mise
+% en œuvre par l’apprenti.
+% On attendra un fort contenu scientifique et donc autour de 30 pages, 35 pages maximum.
 
-\subsection{7.1. Intérêt de la mission pour l'entreprise/Evaluation de votre contribution à l’entreprise}
+% Pour chacune de vos réalisations techniques, méthodologiques ou managériales au cours de la mission
+% vous devrez évoquer les points suivants :
+% A. Présentation du ou des objectif(s)
+% B. Des alternatives possibles (à justifier)
+% C. Le cadre imposé par l’entreprise
+% D. Vos propositions retenues ou non
+% E. Les difficultés éventuelles
+% 18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 10 de 17
 
-Vous détaillerez l’intérêt à court et long terme de la mission pour l’entreprise, les
-perspectives ouvertes par ce sujet et la valeur ajoutée qu’elle peut en retirer pour le produit,
-le service et l’entreprise - dans le cas d’une SSII, vous mettrez en évidence ces mêmes
-perspectives tant pour la société de service que pour le client final.
-
-    \include*{includes/presentation_entreprise}
-    \newpage{}
-    
-\subsection{7.2. Intérêt personnel}
-
-Vous détaillerez l’intérêt personnel technique et/ou organisationnel acquis pendant la mission.
-
-    \include*{includes/presentation_entreprise}
-    \newpage{}
-    
-\subsection{7.3. Conclusion et retour d'expérience sur la mission : les points perfectibles a posteriori}
-
-Vous indiquerez ce que vous auriez aimé améliorer : planning, choix techniques..., vous
-détaillerez aussi la pertinence de votre formation au regard de votre mission.
+% F. Le ou les résultats obtenus (s) ou le niveau d’avancement ainsi que l’impact sur le sujet et votre
+% investissement
+% \end{quote}
 
     \include*{includes/presentation_entreprise}
     \newpage{}
     
 \newpage{}
-\section{8. BIBLIOGRAPHIE – GLOSSAIRE – INDEX – TABLE DES ILLUSTRATIONS}
+\section{Premier bilan (10 PAGES MAXIMUM)}
 
-Ce chapitre doit permettre au jury de comprendre les termes utilisés dans votre mémoire et de
-connaître les sources d’information vous ayant permis de mener à bien votre démarche d’ingénieur.
-La bibliographie ne doit pas être une simple liste d’ouvrages de référence, pour chaque source on se
-doit d’expliquer en quoi elle a servi à résoudre une problématique de la mission. Pour le glossaire,
-18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 11 de 17
+% \begin{quote}
+% Repositionnez la problématique de l’entreprise ou du sujet de la mission par rapport à un état de
+% l’art du marché. Il s’agira par exemple dans le cas d’un produit, d’une méthode d’un standard, de le
+% positionner par rapport à d’autres alternatives en démontrant votre maîtrise du domaine.
+% Le but de ce chapitre est de permettre au jury d’identifier et de quantifier le reste à faire d’ici la fin de
+% votre mission et les résultats à venir et de mesurer la valeur ajoutée que vous avez apportée à
+% l’entreprise et de comprendre en quoi vous avez répondu au besoin de l’entreprise.
+% \end{quote}
 
-chaque entreprise utilise des sigles, des terminologies « métiers », etc. Ces sigles et ces termes doivent
-être expliqués et le contexte de leur utilisation précisé.
+\subsection{Intérêt de la mission pour l'entreprise/Evaluation de votre contribution à l’entreprise}
+
+% \begin{quote}
+% Vous détaillerez l’intérêt à court et long terme de la mission pour l’entreprise, les
+% perspectives ouvertes par ce sujet et la valeur ajoutée qu’elle peut en retirer pour le produit,
+% le service et l’entreprise - dans le cas d’une SSII, vous mettrez en évidence ces mêmes
+% perspectives tant pour la société de service que pour le client final.
+% \end{quote}
+
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
+\subsection{Intérêt personnel}
+
+% \begin{quote}
+% Vous détaillerez l’intérêt personnel technique et/ou organisationnel acquis pendant la mission.
+% \end{quote}
+
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
+\subsection{Conclusion et retour d'expérience sur la mission : les points perfectibles a posteriori}
+
+% Vous indiquerez ce que vous auriez aimé améliorer : planning, choix techniques..., vous
+% détaillerez aussi la pertinence de votre formation au regard de votre mission.
+
+    \include*{includes/presentation_entreprise}
+    \newpage{}
+    
+\newpage{}
+\section{Bibliographie – Glossaire – Index – Table des illustrations}
+
+% Ce chapitre doit permettre au jury de comprendre les termes utilisés dans votre mémoire et de
+% connaître les sources d’information vous ayant permis de mener à bien votre démarche d’ingénieur.
+% La bibliographie ne doit pas être une simple liste d’ouvrages de référence, pour chaque source on se
+% doit d’expliquer en quoi elle a servi à résoudre une problématique de la mission. Pour le glossaire,
+% 18/10/2019 Consignes Mémoire de fin d'apprentissage Promotion 2020 Page 11 de 17
+
+% chaque entreprise utilise des sigles, des terminologies « métiers », etc. Ces sigles et ces termes doivent
+% être expliqués et le contexte de leur utilisation précisé.
 
 % References, glossaire
 
@@ -317,35 +256,36 @@ chaque entreprise utilise des sigles, des terminologies « métiers », etc. Ces
 
 \newpage{}
 
+\thispagestyle{empty}
 \printglossary[title={Glossaire}, toctitle={Glossaire}]
 \newpage{}
 
-%\thispagestyle{empty}
+\thispagestyle{empty}
 \listoffigures
 \newpage{}
 
-%\thispagestyle{empty}
+\thispagestyle{empty}
 % \bibliographystyle{ieeetr}
 % \bibliographystyle{ieeetr}
-%\bibliographystyle{unsrt}
+% \bibliographystyle{unsrt}
 \printbibliography
 \newpage{}
 
-\section{9. ANNEXES (NOMBRE DE PAGES ILLIMITEES, ET A RENDRE DANS UN DOCUMENT PHYSIQUEMENT SEPARE DU RAPPORT)}
+\section{Annexes (Nombre de pages illimité, et à rendre dans un document physiquement séparé du rapport)}
 
-Ce chapitre est obligatoire et doit être significatif, consistant et pertinent.
-Le but de ce chapitre est de permettre au jury de se référer en cas de besoin aux résultats de votre
-travail et à des présentations plus complètes d’outils, de normes. Veillez à ne pas faire un catalogue
-inutile qui pourrait perdre le jury - pas de code source. S’assurer que chaque annexe soit bien
-référencée dans votre rapport, et justifiez sa pertinence par quelques mots d’introduction.
+% Ce chapitre est obligatoire et doit être significatif, consistant et pertinent.
+% Le but de ce chapitre est de permettre au jury de se référer en cas de besoin aux résultats de votre
+% travail et à des présentations plus complètes d’outils, de normes. Veillez à ne pas faire un catalogue
+% inutile qui pourrait perdre le jury - pas de code source. S’assurer que chaque annexe soit bien
+% référencée dans votre rapport, et justifiez sa pertinence par quelques mots d’introduction.
 
-\subsection{9.1. Sommaire des Annexes}
+\subsection{Sommaire des annexes}
 
-\subsection{9.2. Documentation sur l’Entreprise}
+\subsection{Documentation sur l’entreprise}
 
-\subsection{9.3. Documentation sur le matériel/les logiciels}
+\subsection{Documentation sur le matériel/les logiciels}
 
-\subsection{9.4. Etc}
+\subsection{Etc}
 
 
 \end{document}
