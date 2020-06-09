@@ -34,15 +34,15 @@ Une fois cette période passée, des réunions hebdomadaires ont été organisé
 
 \paragraph{Intégration des sources de données (août -- septembre)}
 
-L'équipe data science de la \df a travaillé pendant un mois sur les traitements de données.
+L'équipe \ds de la \df a travaillé pendant un mois sur les traitements de données.
 
-Les données de la \sncf sont dispersées dans presque une dizaine de sources. Les data science ont alors du préparer les données de chaque source afin d'en comprendre le fonctionnement, et l'information apportée par chacune.
+Les données de la \sncf sont dispersées dans presque une dizaine de sources. Les \ds ont alors du préparer les données de chaque source afin d'en comprendre le fonctionnement, et l'information apportée par chacune.
 
 Une fois ces sources préparées, il a fallu les agréger en une seule source complète et synthétique afin de les exposer nettoyées et traitées dans une base de données accessible avec des outils de visualisation de données comme PowerBI de Microsoft par exemple.
 
 \paragraph{Visualisation et synthèse (septembre -- octobre)}
 
-Les lot 1 et 2 n'ont pas pu être effectués en parallèle. Sans une idée de la structure et de la nature des données exposées par l'équipe data science, il aurait été difficile de commencer la création d'interfaces.
+Les lot 1 et 2 n'ont pas pu être effectués en parallèle. Sans une idée de la structure et de la nature des données exposées par l'équipe \ds, il aurait été difficile de commencer la création d'interfaces.
 
 De plus, l'équipe \gls{ux}\footnote{\glsdesc{ux}} dirigée par \stefan a pu se servir du mois d'août pour recueillir le besoin métier du client et préparer des maquettes.
 
@@ -53,7 +53,7 @@ De plus, l'équipe \gls{ux}\footnote{\glsdesc{ux}} dirigée par \stefan a pu se 
     \caption{Maquette de l'écran de visualisation des données synthétisées}
 \end{figure}
 
-Une fois les données rendues accessibles par les data science, et la maquette des \gls{ux} créée, l'équipe de développement a pu commencer la création de l'interface web.
+Une fois les données rendues accessibles par les \ds, et la maquette des \gls{ux} créée, l'équipe de développement a pu commencer la création de l'interface web.
 
 L'objectif de l'interface était de présenter l'état de tous les trains sur une période donnée, avec des filtres pour accéder facilement à la donnée recherchée.\\
 De plus, les équipes de la \sncf utilisent un jeu de règles pour la gestion des anomalies. Ils possèdent une bibliothèque des écarts -- appelée \og librairie des écarts, ou lib-écarts -- leur permettant d'assigner automatiquement un statut à un train en fonction des informations le concernant dans les différentes sources.
@@ -71,18 +71,15 @@ En plus de cette vue, l'administrateur doit avoir accès à un écran spécifiqu
 
 En septembre 2019, l'équipe de développeurs était constituée de 4 développeurs : 2 \gls{front-end} et 2 \gls{full-stack}.
 
-L'équipe des \gls{ux} -- composée de \stefan et d'un alternant sous sa tutelle -- avait une bonne compréhension du besoin client grâce à leur travail.
-
-Ce dernier nécessitait de bien comprendre les usages métiers, et \stefan était très souvent présent aux réunions hebdomadaires. Ils étaient donc d'une précieuse aide pour aider les développeurs à comprendre le réel besoin métier derrière ces écrans.
-
+L'équipe des \gls{ux} -- composée de \stefan et d'un alternant sous sa tutelle -- avait une bonne compréhension du besoin client grâce à leur travail.\\
+Ce dernier nécessitait de bien comprendre les usages métiers, et \stefan était très souvent présent aux réunions hebdomadaires. Ils étaient donc d'une précieuse aide pour aider les développeurs à comprendre le réel besoin métier derrière ces écrans.\\
 Évidemment, \damien était aussi là pour apporter des clarifications et explications.
 
-% , un consultant senior spécialisé en UX qui travaille pour la \df pendant ses temps d'inter-staffing\footnote{TODO}.
 
 La partie \gls{front-end} consitait à reproduire les maquettes en y ajoutant les fonctionnalités de filtres, et l'écran de gestion des règles \og lib-écarts \fg.
 
 
-Les développeurs \gls{full-stack} se sont chargé de créer la connexion entre les données récoltées par les data science et les renvoyer à l'interface en y ajoutant toutes les fonctions de filtre.
+Les développeurs \gls{full-stack} se sont chargé de créer la connexion entre les données récoltées par les \ds et les renvoyer à l'interface en y ajoutant toutes les fonctions de filtre.
 
 La gestion des règles lib-écarts devait également être gérée côté serveur pour envoyer la liste des règles à l'interface, et répercuter les changements lors des modifications.
 
@@ -110,7 +107,7 @@ Cette étape du projet se focalise sur la conception d'un
 \gls{mvp}\footnote{\glsdesc{mvp}}
 basé sur le \gls{poc} de l'étape précédente. Il est surtout question de faire évoluer le \gls{poc} vers une application plus fiable, à jour avec les nouvelles données de 2020 et ajouter une fonctionnalité de comparateur au projet.
 
-Tous les 3 mois environ, les équipes de la \sncf produisent un nouveau document de synthèse pour leur bouclage de production avec de nouvelles données. La branche data science doit alors souvent adapter ses traitements aux changements de format de données, et également comprendre les potentiels nouveaux éléments dans les sources.
+Tous les 3 mois environ, les équipes de la \sncf produisent un nouveau document de synthèse pour leur bouclage de production avec de nouvelles données. La branche \ds doit alors souvent adapter ses traitements aux changements de format de données, et également comprendre les potentiels nouveaux éléments dans les sources.
 
 Pour l'équipe de développement, le \gls{mvp} consistait essentiellement à :
 
@@ -125,10 +122,14 @@ Le comparateur entre la source Concerto et Octopus permet de... DEMANDER à DAMI
 
 Les règles de gestion lib-écarts ont été plus difficiles à gérer que prévu. En effet, l'utilisation et la création de ces règles a mal été compris et nous avons perdu du temps à essayer de comprendre leur fonctionnement.
 
-En décembre, un 3ème développeur \textit{full-stack}\footnote{TODO} a rejoint l'équipe de la \df. Il s'est occupé de l'écran d'import des nouvelles données. Cet écran n'était pas compris dans ce lot, mais \damien savait que ce serait la prochaine étape demandée par le client. La page d'import permettra à terme aux utilisateurs de chez \sncf de téléverser les données sur l'application web pour lancer automatiquement les traitements et mettre à jour la vue synthétique.
+En décembre, un 3ème développeur \gls{full-stack} a rejoint l'équipe de la \df. Il s'est occupé de l'écran d'import des nouvelles données. Cet écran n'était pas compris dans ce lot, mais \damien savait que ce serait la prochaine étape demandée par le client. La page d'import permettra à terme aux utilisateurs de chez \sncf de téléverser les données sur l'application web pour lancer automatiquement les traitements et mettre à jour la vue synthétique.
 
-% \subsubsection{Suite, industrialisation, problemes?}
+\subsubsection{Vers une industrialisation du projet (de mars 2020 à aujourd'hui)}
 % Hello world. Covid. Greves. Blocage SNCF.
 
 % Enfin, une phase dite d'industrialisation...
 
+Une fois le \gls{mvp} validé par la \sncf, nous devions passer à une phase d'industrialisation de la solution pour la mettre en production chez \sncf.
+Bien que nous soyons en juin 2020, cette phase du projet n'a pas encore pu commencer. Les grèves de fin d'année 2019, puis la crise du \textsc{COVID-19} ont gelé l'avancement du projet.
+
+De plus, la \sncf possède un \gls{pas}\footnote{\glsdesc{pas}} auquel elle souhaiterait que \tnp se conforme. Ces exigences de sécurité sont telles que le cabinet aimerait en faire un lot à part entière, tant le travail est conséquent. Les équipes sont donc en négociation par rapport à ce point.
